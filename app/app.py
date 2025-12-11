@@ -62,10 +62,10 @@ def load_model(model_type='resnet'):
     try:
         if model_type == 'resnet':
             model = ResNetModel(pretrained=True, num_classes=4)
-            model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'best_resnet_model.pth')
+            model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'best_resnet.pth')
         else:
             model = AlzheimersCNN(num_classes=4)
-            model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'best_cnn_model.pth')
+            model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'best_cnn.pth')
         
         if os.path.exists(model_path):
             checkpoint = torch.load(model_path, map_location=DEVICE)
@@ -73,6 +73,9 @@ def load_model(model_type='resnet'):
                 model.load_state_dict(checkpoint['model_state_dict'])
             else:
                 model.load_state_dict(checkpoint)
+            print(f"✓ Model loaded from {model_path}")
+        else:
+            print(f"⚠️ Model file not found: {model_path}")
         
         model = model.to(DEVICE)
         model.eval()
@@ -155,13 +158,10 @@ def predict():
         
         img_tensor = transform(img).unsqueeze(0).to(DEVICE)
         
-        # Make prediction with temperature scaling to sharpen probabilities
-        temperature = 0.5  # Lower = more confident; 1.0 = normal
+        # Make prediction
         with torch.no_grad():
             outputs = model(img_tensor)
-            # Apply temperature scaling
-            scaled_outputs = outputs / temperature
-            probabilities = torch.softmax(scaled_outputs, dim=1)
+            probabilities = torch.softmax(outputs, dim=1)
             confidence, predicted = torch.max(probabilities, 1)
         
         # Class labels
@@ -243,5 +243,5 @@ def internal_error(error):
 
 if __name__ == '__main__':
     # For production, use a proper WSGI server like Gunicorn
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 8000))
     app.run(debug=True, host='0.0.0.0', port=port)
