@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMessage = document.getElementById('errorMessage');
     const resultsCard = document.getElementById('resultsCard');
     const emptyState = document.getElementById('emptyState');
-    const modelTypeSelect = document.getElementById('modelType');
 
     let selectedFile = null;
 
@@ -60,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData();
         formData.append('file', selectedFile);
-        formData.append('model_type', modelTypeSelect.value);
+        formData.append('model_type', 'resnet');
 
         loadingSpinner.style.display = 'block';
         errorMessage.textContent = '';

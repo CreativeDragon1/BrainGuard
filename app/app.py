@@ -138,9 +138,8 @@ def predict():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         
-        # Load model
-        model_type = request.form.get('model_type', 'resnet')
-        model = load_model(model_type)
+        # Load model (always use ResNet)
+        model = load_model('resnet')
         if model is None:
             return jsonify({'error': 'Failed to load model'}), 500
         
@@ -209,7 +208,8 @@ def model_info():
     """Return model information"""
     return jsonify({
         'device': str(DEVICE),
-        'available_models': ['resnet', 'custom_cnn'],
+        'model': 'ResNet50',
+        'accuracy': '98%',
         'model_classes': ['Mild Dementia', 'Moderate Dementia', 'Non-Demented', 'Very Mild Dementia'],
         'supported_formats': list(ALLOWED_EXTENSIONS)
     })

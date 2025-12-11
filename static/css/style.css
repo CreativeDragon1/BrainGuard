@@ -171,15 +171,28 @@ a { color: var(--primary-2); text-decoration: none; }
 }
 
 .drop-zone {
-    border: 1.5px dashed rgba(255,255,255,0.2);
-    border-radius: 14px;
-    padding: 26px;
+    border: 3px dashed rgba(108,123,255,0.4);
+    border-radius: 16px;
+    padding: 40px 26px;
     text-align: center;
-    background: var(--card-light);
+    background: linear-gradient(135deg, rgba(108,123,255,0.08), rgba(29,211,176,0.08));
     cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
-.drop-zone:hover { border-color: var(--primary-2); transform: translateY(-2px); }
+
+.drop-zone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(108,123,255,0.2), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.drop-zone:hover::before { opacity: 1; }
+.drop-zone:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(108,123,255,0.25); }
 .drop-icon { font-size: 32px; color: var(--primary-2); margin-bottom: 10px; }
 .drop-main { font-weight: 700; color: var(--text); }
 .drop-sub { color: var(--muted); font-size: 14px; }
@@ -201,6 +214,36 @@ a { color: var(--primary-2); text-decoration: none; }
 
 .error-message { margin-top: 10px; color: var(--danger); font-weight: 600; }
 
+/* Model Info Styling */
+.model-info {
+    margin: 20px 0;
+    background: linear-gradient(135deg, rgba(108,123,255,0.15), rgba(29,211,176,0.15));
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(108,123,255,0.3);
+}
+
+.model-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--primary-2);
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.model-badge i {
+    font-size: 20px;
+    color: var(--accent);
+}
+
+.model-desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+}
+
 .results-card {
     background: var(--card);
     padding: 18px;
@@ -213,13 +256,27 @@ a { color: var(--primary-2); text-decoration: none; }
 .prediction-result { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
 .result-badge {
-    background: var(--card-light);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 14px 16px;
-    border-radius: 14px;
-    min-width: 160px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    border: 2px solid rgba(255,255,255,0.2);
+    padding: 16px 20px;
+    border-radius: 16px;
+    min-width: 180px;
     text-align: center;
     font-weight: 800;
+    font-size: 18px;
+    box-shadow: 0 8px 24px rgba(108,123,255,0.3);
+    animation: fadeInScale 0.5s ease;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .confidence-display { flex: 1; min-width: 220px; }

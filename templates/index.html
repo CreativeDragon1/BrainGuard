@@ -51,8 +51,8 @@
             <div class="about-grid">
                 <div class="about-card">
                     <i class="fas fa-microscope"></i>
-                    <h3>Advanced AI Models</h3>
-                    <p>ResNet50 transfer learning and custom CNN architectures for high accuracy classification</p>
+                    <h3>Advanced AI Model</h3>
+                    <p>ResNet50 transfer learning with ImageNet pretrained weights for 98% validation accuracy</p>
                 </div>
                 <div class="about-card">
                     <i class="fas fa-chart-line"></i>
@@ -95,13 +95,13 @@
                             <input type="file" id="fileInput" hidden accept=".png,.jpg,.jpeg,.nii,.nii.gz" />
                         </div>
 
-                        <!-- Model Selection -->
-                        <div class="model-selection">
-                            <label for="modelType">Select Model:</label>
-                            <select id="modelType">
-                                <option value="resnet">ResNet50 (Better Accuracy)</option>
-                                <option value="custom_cnn">Custom CNN (Faster)</option>
-                            </select>
+                        <!-- Model Info -->
+                        <div class="model-info">
+                            <div class="model-badge">
+                                <i class="fas fa-microchip"></i>
+                                <span>ResNet50 AI Model</span>
+                            </div>
+                            <p class="model-desc">Transfer learning with 98% validation accuracy</p>
                         </div>
 
                         <!-- Action Buttons -->
