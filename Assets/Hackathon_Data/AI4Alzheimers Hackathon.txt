@@ -1,0 +1,133 @@
+Hack4Health — Project Guide: AI for Alzheimer’s Research
+Welcome to Hack4Health: AI for Alzheimer’s, a four-week innovation sprint where students use machine learning and AI to explore solutions for Alzheimer’s detection, diagnosis, and care.
+This document will guide you through:
+How to use the example starter project
+
+
+How to develop your own project idea
+
+
+What to include in your submission
+
+
+Where to find resources and tutorials
+Use all resources in the folder: AI 4 Alzheimer's
+
+
+
+1. Getting Started
+In the Example Starter Project (Hack4Health AI for Alzheimer's Challenge: Competition Packet ), you’ll find:
+A fully worked-out sample project completed by the Hack4Health team
+
+
+A walkthrough of data preprocessing, model building, and evaluation
+
+
+Example graphs, metrics, and analysis write-ups
+
+
+This project is designed to help you understand how to approach biomedical ML problems. You are welcome to study or adapt parts of it, but we encourage every team to design their own original project.
+You can also find a comprehensive list of tutorials, learning resources, and datasets on our website under the “Resources” section:
+hack4health.xyz
+
+2. Finding Your Alzheimer’s AI Project Idea
+Below are examples of possible projects, arranged by complexity level. Feel free to adapt, mix, or extend them to suit your skills and interests.
+Beginner-Level Projects
+Ideal for participants new to AI or Python.
+AI Speech Analysis: Detect Alzheimer’s from speech patterns such as pauses, repetition, or slurring. (Dataset: DementiaBank)
+
+
+Text/NLP Analysis: Predict cognitive decline using writing samples, narrative coherence, or story recall accuracy.
+
+
+Focus on clean data exploration, simple models, and clear visualizations.
+
+Intermediate-Level Projects
+For participants with machine learning experience.
+MRI Image Classification (CNN): Train a convolutional neural network to classify brain scans as healthy or Alzheimer’s.
+
+
+Clinical Data Prediction: Use demographic or test data to estimate Alzheimer’s risk.
+
+
+Handwriting or Eye Tracking Analysis: Detect cognitive changes through handwriting patterns or eye movement data.
+
+
+Focus on proper validation, comparison of models, and interpretability of results.
+
+Advanced-Level Projects
+For participants confident in deep learning or multimodal data.
+Multimodal Diagnosis: Combine MRI, speech, and clinical data in a single model.
+
+
+Explainable AI (XAI): Develop models that show why predictions are made, using SHAP, LIME, or Grad-CAM.
+
+
+Drug Discovery Models: Use AI to predict compounds that may reduce amyloid-beta aggregation.
+
+
+Focus on model transparency and innovation in data integration.
+
+Expert or ISEF-Finalist Tier Projects
+For teams ready to attempt research-grade or publication-quality work.
+AI Early Warning System / Care Assistant: Use continuous monitoring (speech, writing, or behavior) to identify early signs of Alzheimer’s.
+
+
+Protein Modeling with AI: Apply GNNs or AlphaFold-like models to predict misfolded proteins associated with Alzheimer’s pathology.
+
+
+Focus on creativity, reproducibility, and potential real-world application.
+
+3. Submission Requirements
+Each team must submit the following:
+1 Google Colab, Jupyter Notebook or Full Scripts Ideally,  — fully runnable and documented
+
+
+1 PDF Report (2–3 pages) — covering motivation, data sources, methods, and evaluation
+
+
+1 Model Card — describing bias, interpretability, and limitations
+
+
+(Optional) Short Demo Video (≤ 2 minutes) mainly for presentation practice
+
+
+
+4. Recommended Resources
+To support your project, Hack4Health provides:
+A comprehensive list of tutorials, datasets, and learning guides on our website:
+hack4health.xyz
+
+
+Weekly Mentorship Clinics (check the Discord for schedules)
+
+
+Example baseline pipelines and reproducibility templates in the starter project
+
+
+Suggested open datasets:
+DementiaBank (speech)
+
+
+Alzheimer’s Disease Neuroimaging Initiative (ADNI)
+
+
+Public Kaggle Alzheimer’s datasets]
+https://alzdatalens.partners.org/?page=datasets
+https://dss.niagads.org/datasets/
+https://www.niagads.org/genomics/app
+
+
+
+
+5. Communication and Support
+For questions, mentorship, official updates or help forming teams, join our community:
+ Discord: [link to https://discord.com/invite/SZhaZcNh4D]
+For official updates, visit our website:
+ Website: [link to https://hack4health.xyz]
+
+6. Summary
+The Example Starter Project is your reference for structure and methodology.
+ However, originality and initiative are key to standing out. Use the example to understand the process, then explore your own question, dataset, or approach.
+By combining rigor, creativity, and reproducibility, you will contribute meaningfully to open Alzheimer’s research — and make your submission showcase-ready.
+

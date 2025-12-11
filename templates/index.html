@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alzheimer's MRI Detection - AI Diagnosis System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>AlzDetect AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#predict" class="nav-link">Predict</a></li>
+                <li><a href="#results" class="nav-link">Results</a></li>
+                <li><a href="#info" class="nav-link">Info</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Advanced Alzheimer's Detection</h1>
+            <p>AI-powered MRI Analysis for Early Diagnosis</p>
+            <a href="#predict" class="btn btn-primary">Start Analysis</a>
+        </div>
+        <div class="hero-bg">
+            <div class="floating-brain">
+                <i class="fas fa-brain"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About This Project</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-microscope"></i>
+                    <h3>Advanced AI Models</h3>
+                    <p>ResNet50 transfer learning and custom CNN architectures for high accuracy classification</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Explainable AI</h3>
+                    <p>Grad-CAM visualization shows which brain regions influence predictions</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Medical Grade</h3>
+                    <p>Intermediate-level project with proper validation and model comparison</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>4 Classification Stages</h3>
+                    <p>Mild, Moderate, Non-Demented, and Very Mild Dementia detection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Section -->
+    <section id="predict" class="predict">
+        <div class="container">
+            <h2>MRI Analysis</h2>
+            <div class="predict-grid">
+                <!-- Upload Area -->
+                <div class="upload-section">
+                    <div class="upload-card">
+                        <h3>Upload MRI Image</h3>
+                        
+                        <!-- Drop Zone -->
+                        <div class="drop-zone" id="dropZone">
+                            <div class="drop-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="drop-text">
+                                <p class="drop-main">Drag & drop your MRI scan here</p>
+                                <p class="drop-sub">or click to browse</p>
+                            </div>
+                            <input type="file" id="fileInput" hidden accept=".png,.jpg,.jpeg,.nii,.nii.gz" />
+                        </div>
+
+                        <!-- Model Selection -->
+                        <div class="model-selection">
+                            <label for="modelType">Select Model:</label>
+                            <select id="modelType">
+                                <option value="resnet">ResNet50 (Better Accuracy)</option>
+                                <option value="custom_cnn">Custom CNN (Faster)</option>
+                            </select>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button id="analyzeBtn" class="btn btn-primary" disabled>
+                                <i class="fas fa-play"></i> Analyze
+                            </button>
+                            <button id="clearBtn" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Clear
+                            </button>
+                        </div>
+
+                        <!-- Loading Spinner -->
+                        <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+                            <div class="spinner"></div>
+                            <p>Analyzing MRI scan...</p>
+                        </div>
+
+                        <!-- Error Messages -->
+                        <div class="error-message" id="errorMessage"></div>
+                    </div>
+                </div>
+
+                <!-- Results Area -->
+                <div class="results-section">
+                    <div class="results-card" id="resultsCard" style="display: none;">
+                        <!-- Prediction Display -->
+                        <div class="prediction-display">
+                            <div class="prediction-label">
+                                <h3>Diagnosis Result</h3>
+                            </div>
+                            <div class="prediction-result">
+                                <div class="result-badge" id="resultBadge">
+                                    <span id="predictedClass"></span>
+                                </div>
+                                <div class="confidence-display">
+                                    <div class="confidence-label">Confidence</div>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" id="confidenceFill"></div>
+                                    </div>
+                                    <div class="confidence-value" id="confidenceValue">0%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Probability Distribution -->
+                        <div class="probability-chart">
+                            <h4>Probability Distribution</h4>
+                            <div class="prob-bars" id="probBars"></div>
+                        </div>
+
+                        <!-- Grad-CAM Visualization -->
+                        <div class="visualization-section">
+                            <h4>Visual Explanation (Grad-CAM)</h4>
+                            <div class="viz-container">
+                                <div class="viz-item">
+                                    <p>Original MRI</p>
+                                    <img id="originalImage" src="" alt="Original MRI">
+                                </div>
+                                <div class="viz-item">
+                                    <p>Model Attention Map</p>
+                                    <img id="gradCamImage" src="" alt="Grad-CAM">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metadata -->
+                        <div class="metadata">
+                            <p><strong>File:</strong> <span id="fileName"></span></p>
+                            <p><strong>Time:</strong> <span id="timestamp"></span></p>
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState">
+                        <i class="fas fa-file-medical"></i>
+                        <p>Upload an MRI image to see results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information Section -->
+    <section id="info" class="info">
+        <div class="container">
+            <h2>Classification Guide</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon non-demented">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Non-Demented</h3>
+                    <p>Normal cognitive function. No signs of dementia detected in brain imaging.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon very-mild">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3>Very Mild Dementia</h3>
+                    <p>Minimal cognitive changes. Early stage with minimal impact on daily activities.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon mild">
+                        <i class="fas fa-warning"></i>
+                    </div>
+                    <h3>Mild Dementia</h3>
+                    <p>Noticeable cognitive decline. Moderate brain changes visible in imaging.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon moderate">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Moderate Dementia</h3>
+                    <p>Significant cognitive impairment. Substantial brain atrophy visible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Hack4Health AI for Alzheimer's Challenge</p>
+            <p>Intermediate-Level Project | <a href="https://hack4health.xyz" target="_blank">Visit Hack4Health</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

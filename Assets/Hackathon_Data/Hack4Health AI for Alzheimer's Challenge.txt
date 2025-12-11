@@ -1,0 +1,80 @@
+Welcome, Innovators!
+Welcome to the Hack4Health AI for Alzheimer's Challenge! We are thrilled to host our first hackathon focused on one of the most pressing healthcare challenges of our time. In line with our mission to democratize computational medicine, we are providing you with access to a real biomedical dataset, pragmatic tooling, and strong mentorship to help you make a tangible impact. We believe that the next breakthroughs in digital health will come from interdisciplinary builders like you, who can navigate the complexities of biomarkers, data pipelines, model validation, and translational storytelling.
+This packet provides a comprehensive overview of the competition, including the problem, the dataset, potential technical approaches, and evaluation criteria. For the complete rules and regulations, please visit the official rules link below.
+The Challenge: AI for Alzheimer's Detection
+Brief Overview: Your challenge is to develop a machine learning model that accurately classifies Alzheimer's Disease from MRI scans. Alzheimer's is a neurodegenerative disease that is notoriously difficult to diagnose early. Recent advances in AI, particularly in deep learning, have shown promise in identifying subtle patterns in brain scans that can indicate the presence of the disease, even in its early stages.
+The Dataset
+For this competition, we will be using the "Alzheimer MRI Disease Classification Dataset". This dataset contains a series of MRI scans categorized into different stages of Alzheimer's Disease.
+Dataset Path: /kaggle/input/alzheimer-mri-disease-classification-dataset
+Specific File Path: .../Alzheimer MRI Disease Classification Dataset/Data/train-00000-of-00001-c08a401c53fe5312.parquet
+We encourage you to perform thorough exploratory data analysis to understand the nuances of the data.
+Getting Started: Essential Resources
+To ensure you can hit the ground running, we've compiled a few key resources.
+1. Starter Notebook:
+To simplify data loading and initial processing, we have created a Google Colab notebook. This will handle the basic setup and allow you to focus on the more exciting parts of model development and analysis.
+Access the Starter Colab here: Kaggle MRI Alzheimers
+Instructions here: https://www.youtube.com/watch?v=WPRarAeelAM
+2. Free GPU Access:
+Training deep learning models on image data is computationally intensive. We highly recommend using free GPU resources to accelerate your model training.
+Google Colab: Provides free access to GPUs. To enable it, open your notebook, go to Runtime -> Change runtime type, and select GPU from the "Hardware accelerator" dropdown.
+Kaggle: Notebooks on Kaggle also offer free GPU access. You can enable it in the "Settings" tab of your notebook editor.
+3. Ensuring Reproducibility:
+Reproducibility is a cornerstone of good science. To ensure your results are consistent, it's crucial to set random seeds at the beginning of your code. This ensures that operations with a random element, like data shuffling or model weight initialization, produce the same result every time.
+Here’s a sample code snippet to include at the start of your notebook:
+Python:Sample Reproducibility
+Mentorship and Support
+You are not alone in this challenge! We are committed to providing you with the support you need to succeed.
+Weekly Mentor Sessions: We will be hosting weekly Q&A and mentorship sessions every [Day of the Week, e.g., Wednesday at 5 PM PST]. These sessions are a great opportunity to ask questions, get feedback on your approach, and learn from experienced mentors. A link will be sent out 24 hours prior to each session.
+Async Support: For questions that come up between sessions and staying up to date, please join our Discord. Our mentors will be active there to provide guidance.
+Helpful Links & Learning Resources
+Whether you're a seasoned pro or new to deep learning, these resources can help you on your journey.
+Official Links:
+Hack4Health Website: hacking4health.vercel.app
+Official Competition Rules: Hack4Heatlh Hackathon Rules
+Technical Resources:
+PyTorch.org: The official website for PyTorch, with excellent documentation and tutorials.
+3Blue1Brown Neural Networks Series: An intuitive, visual explanation of the core concepts behind neural networks. While not necessary, it is highly recommended, and he is a wonderful teacher
+Optuna: A wonderful tool for hyperparameter optimization
+PyTorch for Deep Learning - Full Course: A comprehensive beginner-friendly video course on YouTube.
+Pytorch.io: A fantastic, practical course that takes a top-down approach to learning.
+Introduction to Deep Learning with PyTorch (Udacity): A free course covering the basics of building neural networks with PyTorch.
+Suggested Timeline (4 Weeks)
+To help you manage your time effectively, here is a suggested timeline.
+Week 1: Exploration and Baseline Model
+Goal: Understand the data and establish a simple, working model.
+Tasks:
+Load and preprocess the data using the starter notebook.
+Perform Exploratory Data Analysis (EDA).
+Build and train a simple baseline model (e.g., a basic CNN).
+Establish a validation framework to measure performance reliably.
+Week 2: Model Development and Iteration
+Goal: Improve upon your baseline model.
+Tasks:
+Experiment with different model architectures (e.g., ResNet, VGG).
+Implement transfer learning using pre-trained weights.
+Begin hyperparameter tuning and data augmentation.
+Week 3: Refinement and Explainability
+Goal: Finalize your model and interpret its predictions.
+Tasks:
+Fine-tune your best-performing model.
+Incorporate Explainable AI (XAI) techniques like Grad-CAM.
+Analyze model errors and start drafting your presentation.
+Week 4: Finalization and Presentation Prep
+Goal: Prepare your final submission package.
+Tasks:
+Clean and comment your code thoroughly.
+Finalize your trained model and presentation.
+Practice your pitch
+Evaluation Criteria
+Model Performance: Accuracy of your model.
+Innovation and Creativity: Novelty of your approach.
+Explainability and Interpretability: Insight into your model's decisions.
+Code Quality and Reproducibility: Clean, well-documented, and runnable code.
+Presentation and Storytelling: Ability to communicate your project's story and impact.
+Submission Guidelines
+Code: A link to your final, runnable Google Colab or Kaggle notebook.
+Model: Your trained model weights, saved and accessible.
+Presentation: A short presentation (5-7 minutes) is required.
+Abstract: A brief abstract summarizing your project.
+We are excited to see what you build! Good luck
+
