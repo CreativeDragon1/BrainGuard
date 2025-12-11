@@ -32,8 +32,9 @@ body {
 }
 
 .container {
-    width: min(1180px, 92%);
+    width: min(1180px, 88%);
     margin: 0 auto;
+    padding: 0 24px;
 }
 
 h1, h2, h3, h4 {
