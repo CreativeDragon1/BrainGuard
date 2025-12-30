@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainGuard: MRI-Based Alzheimer's Detection - Technical Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 8.5in;
+            height: 11in;
+            margin: 20px auto;
+            padding: 0.75in;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .page {
+            page-break-after: always;
+            margin-bottom: 40px;
+            height: 11in;
+        }
+        
+        .title {
+            text-align: center;
+            color: #1F4788;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #2E5C8A;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #2E5C8A;
+            padding-bottom: 4px;
+        }
+        
+        h3 {
+            color: #2E5C8A;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 6px;
+        }
+        
+        p {
+            font-size: 10px;
+            text-align: justify;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        b {
+            color: #1F4788;
+        }
+        
+        .section {
+            margin-bottom: 15px;
+        }
+        
+        .method-box {
+            background-color: #f9f9f9;
+            border-left: 3px solid #2E5C8A;
+            padding: 8px;
+            margin: 8px 0;
+            font-size: 9.5px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            font-size: 10px;
+        }
+        
+        li {
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        
+        .metrics-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 9.5px;
+            margin: 8px 0;
+        }
+        
+        .metric-item {
+            background-color: #f0f4f8;
+            padding: 6px;
+            border-radius: 3px;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                margin: 0;
+                box-shadow: none;
+                height: auto;
+                page-break-after: always;
+            }
+            .page {
+                page-break-after: always;
+                margin-bottom: 0;
+                height: auto;
+            }
+        }
+        
+        .page-number {
+            text-align: right;
+            color: #999;
+            font-size: 8px;
+            margin-top: 15px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1 -->
+    <div class="container">
+        <div class="page">
+            <div class="title">BrainGuard</div>
+            <div class="title" style="font-size: 18px;">MRI-Based Alzheimer's Detection</div>
+            <div class="subtitle">Technical Report</div>
+            
+            <h2>1. Problem Framing</h2>
+            
+            <div class="section">
+                <p>Alzheimer's disease is a progressive neurodegenerative disorder affecting millions globally. Early detection is critical for intervention and patient management. Magnetic Resonance Imaging (MRI) is a non-invasive modality that reveals structural brain changes associated with dementia progression. However, manual diagnosis is time-consuming and subject to expert variability. This project addresses the challenge of <b>automated classification of MRI scans into four dementia severity levels: Non-Demented, Very Mild, Mild, and Moderate Dementia.</b></p>
+            </div>
+            
+            <h3>Objective</h3>
+            <p>Develop and evaluate deep learning models that accurately classify brain MRI images into dementia severity classes with clinical interpretability via explainability techniques (Grad-CAM). The system must operate efficiently in both research and educational settings, balancing accuracy with computational efficiency.</p>
+            
+            <h2>2. Methods</h2>
+            
+            <h3>2.1 Data Preprocessing</h3>
+            <p>MRI images are preprocessed through: (1) Grayscale conversion to single-channel format, (2) Resizing to 224×224 pixels for model compatibility, and (3) Normalization using ImageNet statistics (mean=0.485, std=0.229). For 3D NIfTI data (.nii, .nii.gz), the middle axial slice is extracted to provide 2D input. Data augmentation during training includes rotation (±15°), horizontal flips, and color jitter to enhance generalization.</p>
+            
+            <h3>2.2 Model Architecture</h3>
+            <div class="method-box">
+                <b>ResNet50 Transfer Learning:</b> Leverages ImageNet-pretrained weights with the first convolutional layer adapted for single-channel input. This backbone provides strong feature extraction for MRI data and supports Grad-CAM for class activation mapping.
+            </div>
+            
+            <h3>2.3 Training Configuration</h3>
+            <p>Models are trained using CrossEntropyLoss with the Adam optimizer (lr=1e-3, weight_decay=1e-4) and ReduceLROnPlateau scheduler (factor=0.5, patience=5) for dynamic learning rate adjustment. Training spans up to 50 epochs with batch size 32. Validation monitors accuracy and loss; the scheduler prevents overfitting.</p>
+            
+            <div class="page-number">Page 1</div>
+        </div>
+    </div>
+    
+    <!-- PAGE 2 -->
+    <div class="container">
+        <div class="page">
+            <div class="title" style="font-size: 16px;">BrainGuard Report (Continued)</div>
+            
+            <h2>3. Evaluation</h2>
+            
+            <h3>3.1 Metrics</h3>
+            <p>Performance is evaluated using standard classification metrics:</p>
+            <div class="metrics-list">
+                <div class="metric-item"><b>Accuracy:</b> Proportion of correct predictions</div>
+                <div class="metric-item"><b>Precision:</b> True positives / predicted positives per class</div>
+                <div class="metric-item"><b>Recall:</b> True positives / actual positives per class</div>
+                <div class="metric-item"><b>F1-Score:</b> Harmonic mean of precision and recall</div>
+            </div>
+            <p>Weighted averages account for class imbalance. A <b>confusion matrix</b> details per-class classification patterns, identifying systematic misclassifications.</p>
+            
+            <h3>3.2 Validation Strategy</h3>
+            <p>Data is partitioned into training, validation, and test sets with stratified sampling to preserve class distributions. Validation occurs on held-out data during training to monitor generalization. Final test-set evaluation measures real-world performance without any data leakage.</p>
+            
+            <h3>3.3 Explainability</h3>
+            <p><b>Grad-CAM</b> (Gradient-weighted Class Activation Mapping) generates saliency maps highlighting brain regions most influential in model predictions. By computing gradients of the target class score with respect to the final convolutional layer, Grad-CAM produces heatmaps that overlay on input MRI images. This facilitates clinical interpretability and verification that models leverage anatomically relevant dementia biomarkers (e.g., hippocampal atrophy) rather than artifacts.</p>
+            
+            <h3>3.4 Key Results Summary</h3>
+            <p>Models are evaluated on test sets using the metrics above. The ResNet50 transfer learning model is expected to achieve high accuracy due to rich feature representations. Grad-CAM overlays validate anatomical relevance, and confusion matrices identify classes requiring additional work. Detailed metrics tables and visualizations appear in the accompanying training notebook and web application dashboard.</p>
+            
+            <h3>3.5 Limitations & Future Work</h3>
+            <p><b>Current limitations include:</b> (1) Single-slice 2D processing, losing 3D spatial context, (2) Dataset bias toward specific scanner/acquisition protocols, (3) Lack of clinical validation on independent patient cohorts, and (4) Prototype status without regulatory approval.</p>
+            <p><b>Future work</b> should incorporate 3D volumetric models, evaluate domain adaptation across scanners, and conduct prospective clinical validation. This system is intended for research and educational purposes only.</p>
+            
+            <div style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 9px; color: #666;">
+                <p><b>Data Sources:</b> Kaggle Alzheimer MRI Disease Classification Dataset and ALZ_Variant dataset</p>
+                <p><b>Framework:</b> PyTorch; Preprocessing and visualization with scikit-learn, NumPy, Pillow</p>
+            </div>
+            
+            <div class="page-number">Page 2</div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-print functionality (optional - user can disable)
+        // window.print();
+    </script>
+</body>
+</html>
